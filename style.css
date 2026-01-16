@@ -1,0 +1,116 @@
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+:root {
+    --primary-bg: oklch(17.5% 0.02 240);
+    --card-bg: oklch(22% 0.023 245);
+    --text-primary: oklch(95% 0.01 240);
+    --text-secondary: oklch(70% 0.01 240);
+    --accent: oklch(75% 0.25 300); /* Canlı bir mor */
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+
+    --shadow-color: 240deg 10% 4%;
+    --shadow-elevation-medium: 
+        0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+        0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.34),
+        2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.34);
+    --shadow-elevation-high:
+        0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
+        1.5px 2.9px 3.7px -0.6px hsl(var(--shadow-color) / 0.36),
+        2.8px 5.6px 7.1px -1.1px hsl(var(--shadow-color) / 0.36),
+        5.3px 10.6px 13.4px -1.7px hsl(var(--shadow-color) / 0.36);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+    background-image: url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23000000" fill-opacity="0.05" fill-rule="evenodd"%3E%3Cpath d="M0 40L40 0H20L0 20M40 40V20L20 40"/%3E%3C/g%3E%3C/svg%3E');
+}
+
+.hero {
+    height: 40vh;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-content {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.main-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 5rem);
+    color: var(--accent);
+    text-shadow: 0 0 20px oklch(75% 0.25 300 / 0.5);
+}
+
+.subtitle {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-top: 0.5rem;
+}
+
+main {
+    padding: 0 2rem 2rem 2rem;
+}
+
+#book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2.5rem;
+}
+
+book-card {
+    display: block;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-elevation-medium);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0; /* Initially hidden for animation */
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+book-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-elevation-high);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    border-top: 1px solid oklch(25% 0.02 240);
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 0 1rem 1rem 1rem;
+    }
+    .hero {
+        height: 30vh;
+    }
+}
